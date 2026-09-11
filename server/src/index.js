@@ -11,6 +11,7 @@ const evaluator = new RuleBasedEvaluator();
 const requiredFields = Object.keys(EMPTY_DESIGN);
 const validDesign = (input) => input && requiredFields.every(field => typeof input[field] === 'string');
 const error = (res, status, message) => res.status(status).json({ error: message });
+app.get('/', (_, res) => res.json({ name: 'LLD Practice API', status: 'ok', health: '/api/health' }));
 app.get('/api/health', (_, res) => res.json({ ok: true }));
 app.get('/api/problems', (_, res) => res.json(listProblems()));
 app.get('/api/problems/:id', (req, res) => { const problem = getProblem(req.params.id); return problem ? res.json(problem) : error(res, 404, 'Problem not found'); });
