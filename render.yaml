@@ -2,19 +2,13 @@ services:
   - type: web
     name: lld-practice-api
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm install
     startCommand: node server/src/index.js
     healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION
         value: 20
-      - key: DB_FILE
-        value: /opt/render/project/src/data/lld-practice.sqlite
-    disk:
-      name: lld-practice-data
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1
 
   - type: web
     name: lld-practice-frontend
