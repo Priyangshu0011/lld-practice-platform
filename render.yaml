@@ -11,7 +11,7 @@ services:
         value: 20
 
   - type: web
-    name: lld-practice-frontend
+    name: design-lab-frontend
     runtime: static
     buildCommand: npm install && npm --prefix frontend install && npm --prefix frontend run build
     staticPublishPath: frontend/dist
