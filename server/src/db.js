@@ -15,6 +15,7 @@ export function createAttempt(problemId, draft) { const id = randomUUID(); const
 function mapAttempt(row) { return { id: row.id, problemId: row.problem_id, status: row.status, draft: JSON.parse(row.draft), submission: row.submission ? JSON.parse(row.submission) : null, evaluation: row.evaluation ? JSON.parse(row.evaluation) : null, createdAt: row.created_at, submittedAt: row.submitted_at }; }
 export function getAttempt(id) { const row = db.prepare('SELECT * FROM attempts WHERE id = ?').get(id); return row ? mapAttempt(row) : undefined; }
 export function listAttempts(problemId) { const rows = problemId ? db.prepare('SELECT * FROM attempts WHERE problem_id = ? ORDER BY created_at DESC').all(problemId) : db.prepare('SELECT * FROM attempts ORDER BY created_at DESC').all(); return rows.map(mapAttempt); }
+export function clearAttempts() { return db.prepare('DELETE FROM attempts').run().changes; }
 export function saveDraft(id, draft) { db.prepare('UPDATE attempts SET draft = ? WHERE id = ?').run(JSON.stringify(draft), id); return getAttempt(id); }
 export function submitAttempt(id, submission) { db.prepare('UPDATE attempts SET status = ?, submission = ?, submitted_at = ? WHERE id = ?').run('SUBMITTED', JSON.stringify(submission), new Date().toISOString(), id); return getAttempt(id); }
 export function saveEvaluation(id, evaluation) { db.prepare('UPDATE attempts SET status = ?, evaluation = ? WHERE id = ?').run('COMPLETED', JSON.stringify(evaluation), id); return getAttempt(id); }

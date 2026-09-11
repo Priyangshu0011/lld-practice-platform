@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import { EMPTY_DESIGN, problems } from './domain.js';
-import { createAttempt, getAttempt, getProblem, listAttempts, listProblems, saveDraft, saveEvaluation, seedProblems, submitAttempt } from './db.js';
+import { clearAttempts, createAttempt, getAttempt, getProblem, listAttempts, listProblems, saveDraft, saveEvaluation, seedProblems, submitAttempt } from './db.js';
 import { RuleBasedEvaluator } from './evaluator.js';
 seedProblems(problems);
+if (process.env.CLEAR_ATTEMPTS_ON_START === 'true') console.log(`Cleared ${clearAttempts()} stored attempts`);
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: '100kb' }));
