@@ -1,0 +1,14 @@
+.attempt-row { width: 100%; text-align: left; color: inherit; font: inherit; cursor: pointer; background: transparent; border: 0; }
+.attempt-row:hover, .attempt-row:focus-visible { background: #eef3ea; outline: none; }
+.attempt-row:focus-visible { box-shadow: inset 3px 0 #82a35f; }
+.save-button:disabled, .actions .primary:disabled { cursor: wait; opacity: .65; }
+.save-button { min-width: 132px; }
+@media (max-width: 560px) {
+  .attempt-row { gap: 9px; padding: 14px 2px; }
+  .attempt-row .attempt-icon { width: 30px; height: 30px; }
+  .attempt-row strong { font-size: 13px; }
+  .attempt-row small { font-size: 10px; }
+  .attempt-row b { font-size: 11px; white-space: nowrap; }
+  .actions { width: 100%; margin-left: 0; display: grid; grid-template-columns: 1fr 1fr; }
+  .actions button { width: 100%; min-width: 0; padding-inline: 10px; }
+}

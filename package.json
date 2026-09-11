@@ -1,0 +1,20 @@
+{
+  "name": "lld-practice-platform",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"node --watch server/src/index.js\" \"npm --prefix frontend run dev\"",
+    "build": "npm --prefix frontend run build",
+    "test": "vitest run",
+    "seed": "node server/src/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
