@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Clock3, Code2, Histo
 import './App.css'
 import './history.css'
 
-const API = 'http://localhost:3001/api'
+const API = `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api`
 const fields = [
   ['assumptions', 'Assumptions', 'What are you assuming about scope, users, and invariants?'],
   ['classes', 'Classes', 'Name the core classes and the state each owns.'],
